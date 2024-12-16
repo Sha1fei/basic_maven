@@ -10,8 +10,25 @@
   <name>CustomArchetypeMaven</name>
   <url>http://maven.apache.org</url>
 
+  <contributors>
+    <contributor>
+      <email>soem-email</email>
+      <name>Valentin</name>
+      <organization>Not found</organization>
+    </contributor>
+  </contributors>
+
+  <licenses>
+    <license>
+      <name>No License</name>
+      <comments>No comet</comments>
+      <distribution>No distribution</distribution>
+    </license>
+  </licenses>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.release>23</maven.compiler.release>
   </properties>
 
   <dependencies>
@@ -22,4 +39,12 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <reporting>
+    <plugins>
+    </plugins>
+  </reporting>
+  <build>
+    <directory>out</directory>
+  </build>
 </project>
