@@ -7,6 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
       </profile>
+      <profile name="Annotation profile for CustomArchetypeMaven" enabled="true">
+        <sourceOutputDir name="out/generated-sources/annotations" />
+        <sourceTestOutputDir name="out/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="CustomArchetypeMaven" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="custom_maven" target="1.8" />

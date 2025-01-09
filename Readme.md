@@ -30,9 +30,15 @@
              <groupId>junit</groupId>
              <artifactId>junit</artifactId>
              <version>3.8.1</version> - groupId artifactId version уникальное имя зависимости 
-             <scope>test</scope>
+             <>exclusions 
+             <scope>test</scope> - значения на каком этапе понадобиться зависимость значения: 
+                    complie - зависмость потребуется на этапе компиляции (jar от нее полностью зависим), 
+                    provided - зависимость будет предоставлена кем то другим (например tomcat для jakarta.servlet-api), 
+                    runtime - runtime  зависимость driver в jdbc который нужен только на этапе запросов, 
+                    system - лежит на лоакльном компе(лучше не использовать), 
+                    test - эта зависмость нужна только для выполнения наших тестов
            </dependency>
-        </dependencies> - подтягиваемые зависимости
+        </dependencies> - подтягиваемые зависимости (jar файлы)
 - ### Build Environment
      - ```
         <properties>
@@ -45,5 +51,6 @@
          <directory>out</directory> - указание декректории куда билдить файлы default папка target
        </build> - настройки стадии билда
 - ### Команды для maven
-- `mvn compiler:compile` - запускает plugin: compiler с goal: compile, goal: help посмотреть все goal у плагина
-
+    - `mvn compiler:compile` - запускает plugin: compiler с goal: compile, goal: help посмотреть все goal у плагина
+    - `mvn help:effective-pom` - гененрит итоговую pom-ку, в которую включены итоговые плагины, super pom и сама pom
+    - `mvn dependency:analyze` - анализирует зависимости, goal tree - строит дерево транзитивных зависимостей 
