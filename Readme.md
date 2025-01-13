@@ -61,3 +61,5 @@
     - `mvn help:effective-pom` - гененрит итоговую pom-ку, в которую включены итоговые плагины, super pom и сама pom
     - `mvn dependency:analyze` - анализирует зависимости, goal tree - строит дерево транзитивных зависимостей 
     - `mvn dependency:tree -Dverbose` -  goal tree - строит дерево транзитивных зависимостей, -Dverbose - более полная инфа 
+- ### Фазы maven lifecycle
+![lifecycle](CustomArchetypeMaven/src/imageFolder/lifecycle.png)
