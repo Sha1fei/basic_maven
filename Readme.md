@@ -30,7 +30,13 @@
              <groupId>junit</groupId>
              <artifactId>junit</artifactId>
              <version>3.8.1</version> - groupId artifactId version уникальное имя зависимости 
-             <>exclusions 
+             <exclusions> - исключение транзитивных зависмостей, чтобы она подтянулась в другой
+                <exclusion>
+                  <groupId>org.example</groupId>
+                  <artifactId>CustomArchetypeMaven</artifactId>
+                </exclusion>
+             </exclusions> 
+             <optional>true</optional> - если true они не установятся, но тот кто рабоатет с pom явно должен усановить у себя одну помеченных optional
              <scope>test</scope> - значения на каком этапе понадобиться зависимость значения: 
                     complie - зависмость потребуется на этапе компиляции (jar от нее полностью зависим), 
                     provided - зависимость будет предоставлена кем то другим (например tomcat для jakarta.servlet-api), 
@@ -54,3 +60,4 @@
     - `mvn compiler:compile` - запускает plugin: compiler с goal: compile, goal: help посмотреть все goal у плагина
     - `mvn help:effective-pom` - гененрит итоговую pom-ку, в которую включены итоговые плагины, super pom и сама pom
     - `mvn dependency:analyze` - анализирует зависимости, goal tree - строит дерево транзитивных зависимостей 
+    - `mvn dependency:tree -Dverbose` -  goal tree - строит дерево транзитивных зависимостей, -Dverbose - более полная инфа 
