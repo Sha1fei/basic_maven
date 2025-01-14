@@ -78,7 +78,7 @@
            </plugins> 
          <distributionManagement> - настройка деплоя в nexus(артифактори)
             <snapshotRepository> - для версии с snapshot <version>1.0-SNAPSHOT</version>
-              <id>nexusSnapshot</id> - id для установки соответствия настроек в ~/.m2/settigs.xml
+              <id>nexusSnapshot</id> - id для установки соответствия настроек в ~/.m2/settigs.xml (не забыть прописать тэг server там)
               <url>http://localhost:9000/repository/maven-snapshots/</url> - url в репозитория nexus
             </snapshotRepository>
             <repository> - для версии без snapshot <version>1.0</version>
