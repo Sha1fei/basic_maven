@@ -52,10 +52,31 @@
         </properties> - глобальные переменные для POM
   - ### Build settings
     - ```<repoting></reporting>``` - внедрение плагинов и т.д. на этапе reporting
-    - ```
-       <build>
-         <directory>out</directory> - указание декректории куда билдить файлы default папка target
-       </build> - настройки стадии билда
+      - ```
+         <build>
+          <finalName>ROOT</finalName>-определение именования архива в packaging
+           <directory>out</directory> - указание декректории куда билдить файлы default папка target
+           <plugins> - переопределение плагина для фазы
+              <plugin>
+                 <groupId>org.apache.maven.plugins</groupId>
+                 <artifactId>maven-compiler-plugin</artifactId>
+                 <version>3.13.0</version>
+                <configuration> - конфигурация плагина
+                  <source>23</source>
+                  <target>23</target>
+                </configuration>
+                <executions> - привязка goal к lifecycle maven
+                  <execution>
+                    <id>custom-execution</id> - кастомный id вызова
+                    <goals>
+                      <goal>compile</goal> - привязываемая гола
+                    </goals>
+                    <phase>validate</phase> - фаза к оторой идет приавязка
+                  </execution>
+                </executions>
+              </plugin>
+           </plugins> 
+        </build> - настройки стадии билда
 - ### Команды для maven
     - `mvn compiler:compile` - запускает plugin: compiler с goal: compile, goal: help посмотреть все goal у плагина
     - `mvn help:effective-pom` - гененрит итоговую pom-ку, в которую включены итоговые плагины, super pom и сама pom
@@ -63,3 +84,8 @@
     - `mvn dependency:tree -Dverbose` -  goal tree - строит дерево транзитивных зависимостей, -Dverbose - более полная инфа 
 - ### Фазы maven lifecycle
 ![lifecycle](CustomArchetypeMaven/src/imageFolder/lifecycle.png)
+- `mvn clean` - запускает фазу clean, удаляет папку target 
+- `mvn validate` - валидирует проект, проверка в зависмостей 
+- `mvn compile` - компилирует проект, обработка исходников и гененрация ресурсов - берет исходники из main src, обрабатывает и кладет их в target, вызываются предыдущие фазы 
+- `mvn test` - запускет тесты в проекте
+- `mvn package` - запаковывает в указанный архив (jar не включается в себя зависмости), формат определяется в  `<packaging>jar</packaging>`
