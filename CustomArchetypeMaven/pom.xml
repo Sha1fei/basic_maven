@@ -101,4 +101,14 @@
       </plugin>
     </plugins>
   </build>
+  <distributionManagement>
+    <snapshotRepository>
+    <id>nexusSnapshot</id>
+      <url>http://localhost:9000/repository/maven-snapshots/</url>
+    </snapshotRepository>
+    <repository>
+      <id>nexusReleases</id>
+      <url>http://localhost:9000/repository/maven-releases/</url>
+    </repository>
+  </distributionManagement>
 </project>

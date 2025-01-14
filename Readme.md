@@ -76,6 +76,16 @@
                 </executions>
               </plugin>
            </plugins> 
+         <distributionManagement> - настройка деплоя в nexus(артифактори)
+            <snapshotRepository> - для версии с snapshot <version>1.0-SNAPSHOT</version>
+              <id>nexusSnapshot</id> - id для установки соответствия настроек в ~/.m2/settigs.xml
+              <url>http://localhost:9000/repository/maven-snapshots/</url> - url в репозитория nexus
+            </snapshotRepository>
+            <repository> - для версии без snapshot <version>1.0</version>
+              <id>nexusReleases</id>
+              <url>http://localhost:9000/repository/maven-releases/</url>
+            </repository>
+         </distributionManagement>
         </build> - настройки стадии билда
 - ### Команды для maven
     - `mvn compiler:compile` - запускает plugin: compiler с goal: compile, goal: help посмотреть все goal у плагина
@@ -89,3 +99,6 @@
 - `mvn compile` - компилирует проект, обработка исходников и гененрация ресурсов - берет исходники из main src, обрабатывает и кладет их в target, вызываются предыдущие фазы 
 - `mvn test` - запускет тесты в проекте
 - `mvn package` - запаковывает в указанный архив (jar не включается в себя зависмости), формат определяется в  `<packaging>jar</packaging>`
+- `mvn verify` - проеряет что все успешно собралось
+- `mvn install` - кладет артифакты в m2 repository - после их можно подключать в другие проекты через dependencies
+- `mvn deploy` - кладет артифакты из m2 repository в nexus
