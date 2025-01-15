@@ -20,31 +20,41 @@
             <distribution>No distribution</distribution>
          </license>
       </licenses> - инфа по лицензии
-- ### POM Relationships
-   - ```<groupId>org.example</groupId>``` - groupId artifactId version - предствляют собой уникальный идентификатор проекта
-     ```<artifactId>CustomArchetypeMaven</artifactId>```
-     ```<version>1.0-SNAPSHOT</version>```
-     - ```
-        <dependencies>
-           <dependency>
-             <groupId>junit</groupId>
-             <artifactId>junit</artifactId>
-             <version>3.8.1</version> - groupId artifactId version уникальное имя зависимости 
-             <exclusions> - исключение транзитивных зависмостей, чтобы она подтянулась в другой
-                <exclusion>
-                  <groupId>org.example</groupId>
-                  <artifactId>CustomArchetypeMaven</artifactId>
-                </exclusion>
-             </exclusions> 
-             <optional>true</optional> - если true они не установятся, но тот кто рабоатет с pom явно должен усановить у себя одну помеченных optional
-             <scope>test</scope> - значения на каком этапе понадобиться зависимость значения: 
-                    complie - зависмость потребуется на этапе компиляции (jar от нее полностью зависим), 
-                    provided - зависимость будет предоставлена кем то другим (например tomcat для jakarta.servlet-api), 
-                    runtime - runtime  зависимость driver в jdbc который нужен только на этапе запросов, 
-                    system - лежит на лоакльном компе(лучше не использовать), 
-                    test - эта зависмость нужна только для выполнения наших тестов
-           </dependency>
-        </dependencies> - подтягиваемые зависимости (jar файлы)
+  - ### POM Relationships
+    - ```<groupId>org.example</groupId>``` - groupId artifactId version - предствляют собой уникальный идентификатор проекта
+      ```<artifactId>CustomArchetypeMaven</artifactId>```
+      ```<version>1.0-SNAPSHOT</version>```
+      - ```
+         <parent>
+           <groupId>org.example</groupId> - указывается в children module, наследуемся от этого модуля
+           <artifactId>CustomArchetypeMaven</artifactId>
+           <version>1.0-SNAPSHOT</version>
+         </parent>
+        - ```
+            <modules> - указывается в parent module, созависимые модули
+              <module>childrenProject</module>         
+            </modules>
+      - ```
+         <dependencies>
+            <dependency>
+              <groupId>junit</groupId>
+              <artifactId>junit</artifactId>
+              <version>3.8.1</version> - groupId artifactId version уникальное имя зависимости 
+              <exclusions> - исключение транзитивных зависмостей, чтобы она подтянулась в другой
+                 <exclusion>
+                   <groupId>org.example</groupId>
+                   <artifactId>CustomArchetypeMaven</artifactId>
+                 </exclusion>
+              </exclusions> 
+              <optional>true</optional> - если true они не установятся, но тот кто рабоатет с pom явно должен усановить у себя одну помеченных optional
+              <scope>test</scope> - значения на каком этапе понадобиться зависимость значения: 
+                     complie - зависмость потребуется на этапе компиляции (jar от нее полностью зависим), 
+                     provided - зависимость будет предоставлена кем то другим (например tomcat для jakarta.servlet-api), 
+                     runtime - runtime  зависимость driver в jdbc который нужен только на этапе запросов, 
+                     system - лежит на лоакльном компе(лучше не использовать), 
+                     test - эта зависмость нужна только для выполнения наших тестов
+            </dependency>
+         </dependencies> - подтягиваемые зависимости (jar файлы)
 - ### Build Environment
      - ```
         <properties>
