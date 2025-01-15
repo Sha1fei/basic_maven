@@ -35,6 +35,7 @@
               <module>childrenProject</module>         
             </modules>
       - ```
+        <dependencyManagement> - указывается в родительском pom, в дочернем нужно только укзать groupId и artifactId для dependency
          <dependencies>
             <dependency>
               <groupId>junit</groupId>
@@ -55,6 +56,7 @@
                      test - эта зависмость нужна только для выполнения наших тестов
             </dependency>
          </dependencies> - подтягиваемые зависимости (jar файлы)
+        </dependencyManagement>
 - ### Build Environment
      - ```
         <properties>
@@ -66,7 +68,8 @@
          <build>
           <finalName>ROOT</finalName>-определение именования архива в packaging
            <directory>out</directory> - указание декректории куда билдить файлы default папка target
-           <plugins> - переопределение плагина для фазы
+            <pluginManagement> - указывается в родительском pom, в дочернем нужно только укзать groupId и artifactId для plugin
+             <plugins> - переопределение плагина для фазы
               <plugin>
                  <groupId>org.apache.maven.plugins</groupId>
                  <artifactId>maven-compiler-plugin</artifactId>
@@ -86,6 +89,7 @@
                 </executions>
               </plugin>
            </plugins> 
+          </pluginManagement>
          <distributionManagement> - настройка деплоя в nexus(артифактори)
             <snapshotRepository> - для версии с snapshot <version>1.0-SNAPSHOT</version>
               <id>nexusSnapshot</id> - id для установки соответствия настроек в ~/.m2/settigs.xml (не забыть прописать тэг server там)
