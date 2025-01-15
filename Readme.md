@@ -116,6 +116,32 @@
               </plugin>
            </plugins> 
           </pluginManagement>
+         <profiles> - добавление профиля в maven
+          <profile>
+            <id>dev</id>  - наименование профиля в maven
+            <activation> - условия активации профиля 
+              <activeByDefault>false</activeByDefault> - активация по дефолту
+              <file> - активация по наличию файла
+                <exists>out</exists>
+              </file>
+              <jdk>21</jdk> - активация версии jdk
+              <os>
+                <family>windows</family>  - активация версии OS
+              </os>
+              <property> - активация по ппередаваемому свойству и значению -Dtets=test
+                <name>test</name>
+                <value>test</value>
+              </property>
+            </activation>
+            <properties> - переопределяемые значения при автивации профиля
+              <maven.compiler.source>22</maven.compiler.source>
+              <maven.compiler.target>22</maven.compiler.target>
+            </properties>
+            <build> - переопределяемые значения при автивации профиля
+              <directory>out1</directory>
+            </build>
+          </profile>
+        </profiles>
          <distributionManagement> - настройка деплоя в nexus(артифактори)
             <snapshotRepository> - для версии с snapshot <version>1.0-SNAPSHOT</version>
               <id>nexusSnapshot</id> - id для установки соответствия настроек в ~/.m2/settigs.xml (не забыть прописать тэг server там)
@@ -142,3 +168,5 @@
 - `mvn verify` - проеряет что все успешно собралось
 - `mvn install` - кладет артифакты в m2 repository - после их можно подключать в другие проекты через dependencies
 - `mvn deploy` - кладет артифакты из m2 repository в nexus
+
+- `mvn compile -Pdev` - кладет артифакты из m2 repository в nexus

@@ -132,6 +132,32 @@
       </plugins>
     </pluginManagement>
   </build>
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+        <file>
+          <exists>out</exists>
+        </file>
+        <jdk>21</jdk>
+        <os>
+          <family>window</family>
+        </os>
+        <property>
+          <name>test</name>
+          <value>test</value>
+        </property>
+      </activation>
+      <properties>
+        <maven.compiler.source>22</maven.compiler.source>
+        <maven.compiler.target>22</maven.compiler.target>
+      </properties>
+      <build>
+        <directory>out1</directory>
+      </build>
+    </profile>
+  </profiles>
   <distributionManagement>
     <snapshotRepository>
     <id>nexusSnapshot</id>
