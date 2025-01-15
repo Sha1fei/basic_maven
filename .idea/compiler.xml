@@ -6,17 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-      </profile>
-      <profile name="Annotation profile for CustomArchetypeMaven" enabled="true">
-        <sourceOutputDir name="out/generated-sources/annotations" />
-        <sourceTestOutputDir name="out/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="childrenProject" />
+        <module name="ChildrenArchetypeModule" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="ChildrenArchitypeModule" target="23" />
+      <module name="ChildrenModule" target="23" />
+      <module name="childrenProject" target="23" />
       <module name="custom_maven" target="1.8" />
+      <module name="CustomArchetypeMaven" target="23" />
+      <module name="CustomArchitypeModule" target="23" />
       <module name="maven" target="1.8" />
+      <module name="untitled" target="23" />
     </bytecodeTargetLevel>
   </component>
 </project>

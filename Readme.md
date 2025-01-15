@@ -159,7 +159,7 @@
     - `mvn dependency:analyze` - анализирует зависимости, goal tree - строит дерево транзитивных зависимостей 
     - `mvn dependency:tree -Dverbose` -  goal tree - строит дерево транзитивных зависимостей, -Dverbose - более полная инфа 
 - ### Фазы maven lifecycle
-![lifecycle](CustomArchetypeMaven/src/imageFolder/lifecycle.png)
+![lifecycle](CustomArchetypeModule/ChildrenArchetypeModule/src/main/resources/lifecycle.png)
 - `mvn clean` - запускает фазу clean, удаляет папку target 
 - `mvn validate` - валидирует проект, проверка в зависмостей 
 - `mvn compile` - компилирует проект, обработка исходников и гененрация ресурсов - берет исходники из main src, обрабатывает и кладет их в target, вызываются предыдущие фазы 

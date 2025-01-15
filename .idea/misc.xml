@@ -7,10 +7,17 @@
         <option value="$PROJECT_DIR$/custom_maven/pom.xml" />
         <option value="$PROJECT_DIR$/maven/pom.xml" />
         <option value="$PROJECT_DIR$/CustomArchetypeMaven/pom.xml" />
+        <option value="$PROJECT_DIR$/CustomArchitypeModule/pom.xml" />
+        <option value="$PROJECT_DIR$/CustomArchetypeModule/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/CustomArchetypeMaven/childrenProject/pom.xml" />
+        <option value="$PROJECT_DIR$/CustomArchetypeMaven/pom.xml" />
+        <option value="$PROJECT_DIR$/CustomArchetypeModule/ChildrenArchitypeModule/pom.xml" />
+        <option value="$PROJECT_DIR$/CustomArchitypeModule/ChildrenModule/pom.xml" />
+        <option value="$PROJECT_DIR$/CustomArchitypeModule/untitled/pom.xml" />
         <option value="$PROJECT_DIR$/custom_maven/pom.xml" />
         <option value="$PROJECT_DIR$/maven/pom.xml" />
       </set>
