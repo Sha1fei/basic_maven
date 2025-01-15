@@ -66,7 +66,7 @@
     - ```<repoting></reporting>``` - внедрение плагинов и т.д. на этапе reporting
       - ```
          <build>
-          <finalName>ROOT</finalName>-определение именования архива в packaging
+          <finalName>ROOT</finalName>-определение именования архива в packaging (не использовать для multi module)
            <directory>out</directory> - указание декректории куда билдить файлы default папка target
             <pluginManagement> - указывается в родительском pom, в дочернем нужно только укзать groupId и artifactId для plugin
              <plugins> - переопределение плагина для фазы
@@ -85,6 +85,32 @@
                       <goal>compile</goal> - привязываемая гола
                     </goals>
                     <phase>validate</phase> - фаза к оторой идет приавязка
+                  </execution>
+                </executions>
+              </plugin>
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                  <execution>
+                    <id>custom-copy-resources</id>
+                    <goals>
+                      <goal>copy-resources</goal>
+                    </goals>
+                    <phase>validate</phase>
+                    <configuration>
+                      <outputDirectory>${project.basedir}/target</outputDirectory>
+                      <resources>
+                        <resource>
+                          <directory>${project.basedir}/src/imageFolder</directory>
+                        </resource>
+                        <resource>
+                          <directory>${project.basedir}/src/main/resources</directory>
+                          <filtering>true</filtering> - обрабатывает и подставляет значения в ресурсы из project.*, settings.* (mvn), propertiies.*, env.*, system.getproperty
+                        </resource>
+                      </resources>
+                    </configuration>
                   </execution>
                 </executions>
               </plugin>

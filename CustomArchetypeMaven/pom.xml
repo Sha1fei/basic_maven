@@ -82,6 +82,10 @@
                   <resource>
                     <directory>${project.basedir}/src/imageFolder</directory>
                   </resource>
+                  <resource>
+                    <directory>${project.basedir}/src/main/resources</directory>
+                    <filtering>true</filtering>
+                  </resource>
                 </resources>
               </configuration>
             </execution>
