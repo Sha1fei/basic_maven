@@ -19,6 +19,7 @@
   </contributors>
   <modules>
     <module>ChildrenArchetypeModule</module>
+    <module>ThirdPartyDependency</module>
   </modules>
 
   <licenses>
@@ -67,11 +68,52 @@
       <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>3.7.1</version>
+          <executions>
+            <execution>
+              <id>single-jar</id>
+              <goals>
+                <goal>single</goal>
+              </goals>
+              <phase>package</phase>
+              <configuration>
+                <descriptorRefs>jar-with-dependencies</descriptorRefs>
+                <archive>
+                  <manifest>
+                    <mainClass>org.example.App</mainClass>
+                  </manifest>
+                </archive>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>3.2.0</version>
+          <executions>
+            <execution>
+              <id>create-lib</id>
+              <goals>
+                <goal>copy-dependencies</goal>
+              </goals>
+              <phase>prepare-package</phase>
+              <configuration>
+                <outputDirectory>${project.build.directory}/lib</outputDirectory>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.4.1</version>
           <configuration>
             <archive>
               <manifest>
+                <addClasspath>true</addClasspath>
+                <classpathPrefix>lib/</classpathPrefix>
                 <mainClass>org.example.App</mainClass>
               </manifest>
             </archive>
