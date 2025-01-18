@@ -114,7 +114,7 @@
                   </execution>
                 </executions>
               </plugin>
-              <plugin> - создание одной jar-ки с  распакованными внутри нее зависимостями
+              <plugin> - создание одной jar-ки с  распакованными внутри нее зависимостями  (создается manifest в out)
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId> 
                 <version>3.7.1</version>
@@ -136,9 +136,9 @@
                   </execution>
                 </executions>
               </plugin>
-              <plugin> - создание одной jar-ки с подгруженными зависимостями вотдельных jar
+              <plugin> - создание одной jar-ки с подгруженными зависимостями вотдельных jar (создается manifest  в out)
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
+                <artifactId>maven-dependency-plugin</artifactId> 
                 <version>3.2.0</version>
                 <executions>
                   <execution>
