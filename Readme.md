@@ -66,7 +66,7 @@
     - ```<repoting></reporting>``` - внедрение плагинов и т.д. на этапе reporting
       - ```
          <build>
-          <finalName>ROOT</finalName>-определение именования архива в packaging (не использовать для multi module)
+          <finalName>ROOT</finalName> - определение именования архива в packaging (не использовать для multi module)
            <directory>out</directory> - указание декректории куда билдить файлы default папка target
             <pluginManagement> - указывается в родительском pom, в дочернем нужно только укзать groupId и artifactId для plugin
              <plugins> - переопределение плагина для фазы
@@ -147,7 +147,7 @@
                       <goal>copy-dependencies</goal>
                     </goals>
                     <phase>prepare-package</phase>
-                    <configuration> - директория куда класть зависимотси
+                    <configuration> - директория куда класть зависимости
                       <outputDirectory>${project.build.directory}/lib</outputDirectory>
                     </configuration>
                   </execution>
