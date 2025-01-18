@@ -114,6 +114,45 @@
                   </execution>
                 </executions>
               </plugin>
+              <plugin> - создание одной jar-ки с  распакованными внутри нее зависимостями
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId> 
+                <version>3.7.1</version>
+                <executions>
+                  <execution>
+                    <id>single-jar</id> - наименование при сборки мавен
+                    <goals>
+                      <goal>single</goal>
+                    </goals>
+                    <phase>package</phase>
+                    <configuration> - префикс для создаваемой jar
+                      <descriptorRefs>jar-with-dependencies</descriptorRefs>
+                      <archive>
+                        <manifest> - добавление в манивест main class
+                          <mainClass>org.example.App</mainClass>
+                        </manifest>
+                      </archive>
+                    </configuration>
+                  </execution>
+                </executions>
+              </plugin>
+              <plugin> - создание одной jar-ки с подгруженными зависимостями вотдельных jar
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                  <execution>
+                    <id>create-lib</id>
+                    <goals>
+                      <goal>copy-dependencies</goal>
+                    </goals>
+                    <phase>prepare-package</phase>
+                    <configuration> - директория куда класть зависимотси
+                      <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                    </configuration>
+                  </execution>
+                </executions>
+              </plugin>
            </plugins> 
           </pluginManagement>
          <profiles> - добавление профиля в maven
