@@ -12,6 +12,7 @@
         <sourceTestOutputDir name="out/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ThirdPartyDependency" />
+        <module name="CustomPlugin" />
         <module name="ChildrenArchetypeModule" />
       </profile>
     </annotationProcessing>
