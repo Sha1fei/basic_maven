@@ -24,7 +24,6 @@
             <artifactId>maven-plugin-api</artifactId>
             <version>3.9.8</version>
             <scope>provided</scope>
-
         </dependency>
         <dependency>
             <groupId>org.apache.maven.plugin-tools</groupId>

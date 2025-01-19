@@ -34,29 +34,41 @@
             <modules> - указывается в parent module, созависимые модули
               <module>childrenProject</module>         
             </modules>
-      - ```
-        <dependencyManagement> - указывается в родительском pom, в дочернем нужно только укзать groupId и artifactId для dependency
-         <dependencies>
-            <dependency>
-              <groupId>junit</groupId>
-              <artifactId>junit</artifactId>
-              <version>3.8.1</version> - groupId artifactId version уникальное имя зависимости 
-              <exclusions> - исключение транзитивных зависмостей, чтобы она подтянулась в другой
-                 <exclusion>
-                   <groupId>org.example</groupId>
-                   <artifactId>CustomArchetypeMaven</artifactId>
-                 </exclusion>
-              </exclusions> 
-              <optional>true</optional> - если true они не установятся, но тот кто рабоатет с pom явно должен усановить у себя одну помеченных optional
-              <scope>test</scope> - значения на каком этапе понадобиться зависимость значения: 
-                     complie - зависмость потребуется на этапе компиляции (jar от нее полностью зависим), 
-                     provided - зависимость будет предоставлена кем то другим (например tomcat для jakarta.servlet-api), 
-                     runtime - runtime  зависимость driver в jdbc который нужен только на этапе запросов, 
-                     system - лежит на лоакльном компе(лучше не использовать), 
-                     test - эта зависмость нужна только для выполнения наших тестов
-            </dependency>
-         </dependencies> - подтягиваемые зависимости (jar файлы)
-        </dependencyManagement>
+        - ```
+          <dependencyManagement> - указывается в родительском pom, в дочернем нужно только укзать groupId и artifactId для dependency
+           <dependencies>
+              <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>3.8.1</version> - groupId artifactId version уникальное имя зависимости 
+                <exclusions> - исключение транзитивных зависмостей, чтобы она подтянулась в другой
+                   <exclusion>
+                     <groupId>org.example</groupId>
+                     <artifactId>CustomArchetypeMaven</artifactId>
+                   </exclusion>
+                </exclusions> 
+                <optional>true</optional> - если true они не установятся, но тот кто рабоатет с pom явно должен усановить у себя одну помеченных optional
+                <scope>test</scope> - значения на каком этапе понадобиться зависимость значения: 
+                       complie - зависмость потребуется на этапе компиляции (jar от нее полностью зависим), 
+                       provided - зависимость будет предоставлена кем то другим (например tomcat для jakarta.servlet-api), 
+                       runtime - runtime  зависимость driver в jdbc который нужен только на этапе запросов, 
+                       system - лежит на лоакльном компе(лучше не использовать), 
+                       test - эта зависмость нужна только для выполнения наших тестов
+              </dependency>
+              <dependency> - зависимость для добавления api создания плагина
+                  <groupId>org.apache.maven</groupId>
+                  <artifactId>maven-plugin-api</artifactId>
+                  <version>3.9.8</version>
+                  <scope>provided</scope>
+              </dependency>
+              <dependency>  - зависимость для добавления Mojo анатаций для плагина
+                  <groupId>org.apache.maven.plugin-tools</groupId>
+                  <artifactId>maven-plugin-annotations</artifactId>
+                  <version>3.13.1</version>
+                  <scope>provided</scope>
+              </dependency>
+           </dependencies> - подтягиваемые зависимости (jar файлы)
+          </dependencyManagement>
 - ### Build Environment
      - ```
         <properties>
@@ -153,6 +165,36 @@
                   </execution>
                 </executions>
               </plugin>
+              <plugin> - кастомное создние плагина
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>3.13.1</version>
+                <executions>
+                  <execution>
+                    <id>generated-helpmojo</id>
+                    <goals>
+                      <goal>helpmojo</goal>
+                    </goals>
+                  </execution>
+                </executions>
+                <configuration>
+                  <goalPrefix>my-plugin-prefix</goalPrefix>
+                </configuration>
+              </plugin>
+              <plugin>-  подключение созданного плагина
+                <groupId>org.example</groupId>
+                <artifactId>CustomPlugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>
+                                CustomPlugin
+                            </goal>
+                        </goals>
+                        <phase>compile</phase>
+                    </execution>
+                </executions>
+            </plugin>
            </plugins> 
           </pluginManagement>
          <profiles> - добавление профиля в maven
